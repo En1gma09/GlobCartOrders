@@ -15,6 +15,8 @@ namespace GlobCartOrderService.Services.API
                     Description = "GlobCart Service API",
                     Contact = new OpenApiContact { Name = "Filippo", Email = "filippo.maniaci.work@gmail.com" }
                 });
+
+                options.EnableAnnotations();
             });
         }
 

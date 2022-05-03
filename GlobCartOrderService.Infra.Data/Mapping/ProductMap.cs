@@ -1,0 +1,33 @@
+﻿using GlobCartOrderService.Domain.Models;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace GlobCartOrderService.Infra.Data.Mapping
+{
+    internal class ProductMap : IEntityTypeConfiguration<Product>
+    {
+        public void Configure(EntityTypeBuilder<Product> builder)
+        {
+            builder.Property(prop => prop.productId)
+                .HasColumnType("varchar(40)")
+                .HasMaxLength(40);
+
+            builder.Property(prop => prop.productName)
+                .HasColumnType("varchar(150)")
+                .HasMaxLength(150)
+                .IsRequired();
+
+            builder.Property(prop => prop.UnitPrice)
+                .HasColumnType("decimal(5,2)")
+                .IsRequired();
+
+            builder.Property(prop => prop.ProductCreated)
+                .HasColumnType("Date");
+        }
+    }
+}

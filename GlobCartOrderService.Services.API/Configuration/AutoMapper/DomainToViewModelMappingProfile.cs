@@ -9,6 +9,7 @@ namespace GlobCartOrderService.Services.API.Configuration.AutoMapper
         public DomainToViewModelMappingProfile()
         {
             CreateMap<User, UserViewModel>();
+            CreateMap<Product, ProductViewModel>();
         }
     }
 }

@@ -8,7 +8,6 @@ namespace GlobCartOrderService.Services.API.Services
     public class UserService : IUserService
     {
         private readonly IUserRepository _userRepository;
-        //private readonly GlobCartOrderServiceContext _globCartOrderServiceContext;
 
         public UserService(IUserRepository _userRepository)
         {
@@ -28,19 +27,6 @@ namespace GlobCartOrderService.Services.API.Services
             user.Email = user.Email;
             user.Password = user.Password;
 
-
-            //var getUser = _userRepository.GetByEmail(user.Email, user.Password);
-
-            //if (getUser == null)
-            //    result.Errors.Add($"Usuário {user.Email} não encontrado.");
-            //else
-            //{
-            //    //user.Id = Guid.NewGuid();
-            //    user.Name = getUser.Name;
-            //    user.Email = getUser.Email;
-            //    user.Password = getUser.Password;
-            //}
-
             if (result.IsValid)
             {
                 _userRepository.Create(user);
@@ -48,11 +34,6 @@ namespace GlobCartOrderService.Services.API.Services
             }
 
             return result;
-
-            //_globCartOrderServiceContext.Users.Add(user);
-            //_userRepository.Commit();
-
-            //return user;
         }
     }
 }

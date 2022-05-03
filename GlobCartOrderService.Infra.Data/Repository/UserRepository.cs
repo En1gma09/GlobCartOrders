@@ -19,18 +19,8 @@ namespace GlobCartOrderService.Infra.Data.Repository
             this.globCartOrderServiceContext = globCartOrderServiceContext;
         }
 
-        //public UserLogin GetByEmail(string email, string password)
-        //{
-        //    return globCartOrderServiceContext
-        //        .Users
-        //        .Include(u => u.Email)
-        //        .FirstOrDefault(user => user.Email.Equals(email) && user.Password.Equals(password));
-        //}
-
         public User GetByEmail(string email, string password)
         {
-            //var u = globCartOrderServiceContext.Users.FirstOrDefault(x => x.Email == email);
-            //return u;
                 return globCartOrderServiceContext
                     .Users
                     .Include(u => u.Email)
