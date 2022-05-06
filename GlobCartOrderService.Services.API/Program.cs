@@ -40,4 +40,6 @@ app.MapControllers();
 //    options.SetIsOriginAllowed(x => _ = true).AllowAnyMethod().AllowAnyHeader().AllowCredentials();
 //});
 
+app.UseCors();
+
 app.Run();
