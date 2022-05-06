@@ -10,7 +10,7 @@ using GlobCartOrderService.Services.API.Models;
 
 namespace GlobCartOrderService.Services.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/auth")]
     [ApiController]
     public class AuthController : ControllerBase
     {
@@ -21,7 +21,7 @@ namespace GlobCartOrderService.Services.API.Controllers
             _authenticationRepository = authenticationRepository;
         }
 
-        [Route("login")]
+        [Route("token")]
         [HttpPost]
         public async Task<IActionResult> Login(UserLoginViewModel user)
         {
@@ -60,7 +60,7 @@ namespace GlobCartOrderService.Services.API.Controllers
             var tokenHandler = new JwtSecurityTokenHandler();
             var token = tokenHandler.CreateToken(tokenDescriptor);
 
-            return Ok(new { token = tokenHandler.WriteToken(token) });
+            return Ok(new { user, token = tokenHandler.WriteToken(token) });
         }
     }
 }
