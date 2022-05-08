@@ -17,6 +17,8 @@ namespace GlobCartOrderService.Domain.Interfaces
 
         Product UpdateProduct(string id, Product product);
 
+        Product DeleteProduct(string id, Product product);
+
         void Commit();
     }
 }

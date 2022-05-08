@@ -55,6 +55,17 @@ namespace GlobCartOrderService.Infra.Data.Repository
             return product;
         }
 
+        public Product DeleteProduct(string id, Product product)
+        {
+            if (id != null)
+            {
+                _globCartOrderServiceContext.Remove(product);
+                _globCartOrderServiceContext.SaveChanges();
+            }
+
+            return product;
+        }
+
         public void Commit()
         {
             _globCartOrderServiceContext.SaveChanges();
