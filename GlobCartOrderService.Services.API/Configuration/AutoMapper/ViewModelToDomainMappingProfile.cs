@@ -10,6 +10,8 @@ namespace GlobCartOrderService.Services.API.Configuration.AutoMapper
         {
             CreateMap<CreateUserViewModel, User>();
             CreateMap<ProductViewModel, Product>();
+            CreateMap<ICollection<ProductViewModel>,Product >();
+            CreateMap<UpdateProductViewModel, Product>();
         }
     }
 }

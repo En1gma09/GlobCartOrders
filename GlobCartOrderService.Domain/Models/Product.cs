@@ -15,5 +15,7 @@ namespace GlobCartOrderService.Domain.Models
         public decimal UnitPrice { get; set; }
 
         public DateTime ProductCreated { get; set; }
+
+        public DateTime? UpdatedAt { get; set; }
     }
 }

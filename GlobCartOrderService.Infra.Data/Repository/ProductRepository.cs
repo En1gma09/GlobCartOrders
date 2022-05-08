@@ -45,7 +45,14 @@ namespace GlobCartOrderService.Infra.Data.Repository
 
         public Product UpdateProduct(string id, Product product)
         {
-            throw new NotImplementedException();
+
+            if (id != null)
+            {
+                _globCartOrderServiceContext.Update(product);
+                _globCartOrderServiceContext.SaveChanges();
+            }
+
+            return product;
         }
 
         public void Commit()

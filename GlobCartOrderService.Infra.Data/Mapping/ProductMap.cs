@@ -28,6 +28,9 @@ namespace GlobCartOrderService.Infra.Data.Mapping
 
             builder.Property(prop => prop.ProductCreated)
                 .HasColumnType("Date");
+
+            builder.Property(prop => prop.UpdatedAt)
+                .HasColumnType("Date");
         }
     }
 }

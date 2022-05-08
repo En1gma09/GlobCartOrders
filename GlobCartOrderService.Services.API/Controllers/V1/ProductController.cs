@@ -28,7 +28,7 @@ namespace GlobCartOrderService.Services.API.Controllers.V1
 
         [AllowAnonymous]
         [HttpGet]
-        public ICollection<Product> Get()
+        public ICollection<ProductViewModel> Get()
         {
             _logger.LogInformation("Retornando lista de produtos completa");
             var products = _productRepository.GetProducts();
@@ -36,12 +36,12 @@ namespace GlobCartOrderService.Services.API.Controllers.V1
             {
                 _logger.LogWarning("Possível problema de performance. Quantidade grande de produtos!");
             }
-            return products;
+            return _mapper.Map<ICollection<ProductViewModel>>(products);
         }
 
         [AllowAnonymous]
         [HttpGet("{productName}")]
-        [Produces(typeof(Product))]
+        [Produces(typeof(ProductViewModel))]
         public IActionResult Get([FromRoute] string productName)
         {
             var product = _productRepository.GetProductByName(productName);
@@ -70,9 +70,19 @@ namespace GlobCartOrderService.Services.API.Controllers.V1
 
         [Authorize(Roles = "Admin,SuperAdmin")]
         [HttpPut("{id}")]
-        public IActionResult Update(string id, Product product)
+        [ProducesResponseType(typeof(UpdateProductViewModel), 200)]
+        public IActionResult Update([FromRoute]string id, UpdateProductViewModel product)
         {
-            return Ok(product);
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            product.UpdatedAt = DateTime.Now;
+
+            var productUpdated = _productRepository.UpdateProduct(id, _mapper.Map<Product>(product));
+
+            return Ok(productUpdated);
         }
 
         [Authorize(Roles = "Admin,SuperAdmin")]
