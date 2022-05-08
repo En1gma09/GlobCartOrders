@@ -23,7 +23,7 @@ namespace GlobCartOrderService.Infra.Data.Mapping
                 .IsRequired();
 
             builder.Property(prop => prop.UnitPrice)
-                .HasColumnType("decimal(5,2)")
+                .HasColumnType("decimal(10,3)")
                 .IsRequired();
 
             builder.Property(prop => prop.ProductCreated)

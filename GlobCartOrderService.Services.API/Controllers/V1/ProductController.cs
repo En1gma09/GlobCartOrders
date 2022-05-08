@@ -3,6 +3,7 @@ using GlobCartOrderService.Domain.Interfaces;
 using GlobCartOrderService.Domain.Models;
 using GlobCartOrderService.Services.API.Models;
 using GlobCartOrderService.Services.API.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
@@ -25,6 +26,7 @@ namespace GlobCartOrderService.Services.API.Controllers.V1
 
         }
 
+        [AllowAnonymous]
         [HttpGet]
         public ICollection<Product> Get()
         {
@@ -37,6 +39,7 @@ namespace GlobCartOrderService.Services.API.Controllers.V1
             return products;
         }
 
+        [AllowAnonymous]
         [HttpGet("{productName}")]
         [Produces(typeof(Product))]
         public IActionResult Get([FromRoute] string productName)
@@ -47,6 +50,7 @@ namespace GlobCartOrderService.Services.API.Controllers.V1
             return Ok(product);
         }
 
+        [Authorize(Roles = "Admin,SuperAdmin")]
         [HttpPost]
         [ProducesResponseType(typeof(ProductViewModel), 201)]
         [ProducesResponseType(404)]
@@ -62,6 +66,20 @@ namespace GlobCartOrderService.Services.API.Controllers.V1
             }
 
             return BadRequest(ModelState);
+        }
+
+        [Authorize(Roles = "Admin,SuperAdmin")]
+        [HttpPut("{id}")]
+        public IActionResult Update(string id, Product product)
+        {
+            return Ok(product);
+        }
+
+        [Authorize(Roles = "Admin,SuperAdmin")]
+        [HttpDelete("{id}")]
+        public IActionResult Delete(string id)
+        {
+            return Ok("Produto " + id + " deletado");
         }
     }
 }

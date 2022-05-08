@@ -1,9 +1,8 @@
 ﻿using AutoMapper;
 using GlobCartOrderService.Domain.Models;
-using GlobCartOrderService.Domain.Services;
 using GlobCartOrderService.Services.API.Models;
 using GlobCartOrderService.Services.API.Services;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GlobCartOrderService.Services.API.Controllers.V1
@@ -12,15 +11,26 @@ namespace GlobCartOrderService.Services.API.Controllers.V1
     [ApiController]
     public class UserController : ControllerBase
     {
-        public readonly IUserService userService;
-        public readonly IMapper mapper;
-        public readonly ILogger<UserController> logger;
+        public readonly IUserService _userService;
+        public readonly IMapper _mapper;
+        public readonly ILogger<UserController> _logger;
 
         public UserController(IUserService userService, IMapper mapper, ILogger<UserController> logger)
         {
-            this.userService = userService;
-            this.mapper = mapper;
-            this.logger = logger;
+            _userService = userService;
+            _mapper = mapper;
+            _logger = logger;
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpGet]
+        [Produces(typeof(User))]
+        public IActionResult GetAll()
+        {
+            _logger.LogInformation("Retornando lista de usuários completa");
+            var users = _userService.GetUsers();
+
+            return Ok(users);
         }
 
         [HttpPost]
@@ -31,9 +41,9 @@ namespace GlobCartOrderService.Services.API.Controllers.V1
         {
             if (ModelState.IsValid)
             {
-                var userResult = userService.CreateUser(mapper.Map<User>(user));
+                var userResult = _userService.CreateUser(_mapper.Map<User>(user));
                 if (userResult.IsValid)
-                    return Created($"api/users/{userResult.Model.Name}", mapper.Map<UserViewModel>(userResult.Model));
+                    return Created($"api/users/{userResult.Model.Name}", _mapper.Map<UserViewModel>(userResult.Model));
                 else
                     return BadRequest(userResult.Errors);
             }

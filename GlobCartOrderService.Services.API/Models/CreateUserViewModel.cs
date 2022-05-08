@@ -1,9 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using GlobCartOrderService.Domain.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace GlobCartOrderService.Services.API.Models
 {
     public class CreateUserViewModel
     {
+
         [Required]
         public string Name { get; set; }
 
@@ -12,6 +14,8 @@ namespace GlobCartOrderService.Services.API.Models
 
         [Required]
         public string Password { get; set; }
+
+        public Role Role { get; set; }
 
     }
 }

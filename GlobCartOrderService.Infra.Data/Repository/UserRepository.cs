@@ -19,6 +19,11 @@ namespace GlobCartOrderService.Infra.Data.Repository
             this.globCartOrderServiceContext = globCartOrderServiceContext;
         }
 
+        public ICollection<User> GetAll()
+        {
+            return globCartOrderServiceContext.Users.ToList();
+        }
+
         public User GetByEmail(string email, string password)
         {
                 return globCartOrderServiceContext
@@ -35,6 +40,11 @@ namespace GlobCartOrderService.Infra.Data.Repository
         public void Commit()
         {
             globCartOrderServiceContext.SaveChanges();
+        }
+
+        ValidationResult<User> IUserRepository.Create(User user)
+        {
+            throw new NotImplementedException();
         }
     }
 }

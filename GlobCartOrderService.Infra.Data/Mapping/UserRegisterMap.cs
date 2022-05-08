@@ -27,6 +27,10 @@ namespace GlobCartOrderService.Infra.Data.Mapping
                 .HasColumnType("varchar(20)")
                 .HasMaxLength(20)
                 .IsRequired();
+
+            builder.Property(prop => prop.Role)
+                .HasColumnName("Role")
+                .IsRequired();
         }
     }
 }

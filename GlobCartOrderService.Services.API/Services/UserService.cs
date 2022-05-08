@@ -14,6 +14,11 @@ namespace GlobCartOrderService.Services.API.Services
             this._userRepository = _userRepository;
         }
 
+        public ICollection<User> GetUsers()
+        {
+            return _userRepository.GetAll();
+        }
+
         public User GetUser(string email, string password)
         {
             return _userRepository.GetByEmail(email, password);
@@ -26,6 +31,7 @@ namespace GlobCartOrderService.Services.API.Services
             user.Name = user.Name;
             user.Email = user.Email;
             user.Password = user.Password;
+            user.Role = user.Role;
 
             if (result.IsValid)
             {

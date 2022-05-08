@@ -9,9 +9,11 @@ namespace GlobCartOrderService.Domain.Interfaces
 {
     public interface IUserRepository
     {
+        ICollection<User> GetAll();
+
         User GetByEmail(String email, string password);
 
-        void Create(User user);
+        ValidationResult<User> Create(User user);
 
         void Commit();
     }

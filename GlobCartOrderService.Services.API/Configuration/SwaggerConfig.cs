@@ -15,6 +15,30 @@ namespace GlobCartOrderService.Services.API
                     Description = "GlobCart Service API",
                     Contact = new OpenApiContact { Name = "Filippo", Email = "filippo.maniaci.work@gmail.com" }
                 });
+                options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    Name = "Authorization",
+                    Description = "Please, enter the Bearer Authorization string as follows: `Bearer Generated-JWT-Token`",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = "Bearer"
+                });
+                options.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Name = "Bearer",
+                            In = ParameterLocation.Header,
+                            Reference = new OpenApiReference
+                            {
+                                Id = "Bearer",
+                                Type = ReferenceType.SecurityScheme,
+                            }
+                        },
+                        new List<string>()
+                    }
+                });
 
                 options.EnableAnnotations();
             });

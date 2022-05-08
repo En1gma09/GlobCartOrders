@@ -39,7 +39,8 @@ namespace GlobCartOrderService.Services.API.Controllers
                 new Claim(ClaimTypes.NameIdentifier,
                           existingUser.Id.ToString()),
 
-                new Claim(ClaimTypes.Name, ClaimTypes.Email)
+                new Claim(ClaimTypes.Name, ClaimTypes.Email),
+                new Claim(ClaimTypes.Role, (existingUser.Role).ToString())
             };
 
             var tokenSecretKey = Encoding.UTF8.GetBytes(Settings.Secret);

@@ -1,4 +1,6 @@
-﻿namespace GlobCartOrderService.Services.API.Models
+﻿using GlobCartOrderService.Domain.Models;
+
+namespace GlobCartOrderService.Services.API.Models
 {
     public class UserViewModel
     {
@@ -8,11 +10,14 @@
 
         public string Password { get; set; }
 
-        public UserViewModel(string name, string email, string password)
+        public Role Role { get; set; }
+
+        public UserViewModel(string name, string email, string password, Role role)
         {
             Name = name;
             Email = email;
             Password = password;
+            Role = role;
         }
     }
 }

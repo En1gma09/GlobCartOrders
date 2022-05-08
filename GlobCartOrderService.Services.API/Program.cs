@@ -15,10 +15,12 @@ builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(builder =>
     {
-        builder.WithOrigins(new[] { "https://www.minhaloja.com.br", "https://www.minhaloja.com.br" });
+        builder.WithOrigins(new[] { "https://www.minhaloja.com.br", "https://www.minhaloja.com.br", "http://localhost:3000" });
     });
 });
 
+builder.Services.AddAuthenticationConfig();
+builder.Services.AddAuthorizationConfig();
 builder.Services.AddDatabaseConfiguration(builder.Configuration);
 builder.Services.AddDependencyInjectionConfiguration();
 builder.Services.AddAutoMapperConfig();
@@ -29,17 +31,17 @@ app.UseSwaggerSetup(app.Environment);
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
 
-//Use the .AllowAnyMethod().AllowAnyHeader().AllowCredentials() only to test localhost
+//Use the.AllowAnyMethod().AllowAnyHeader().AllowCredentials() only to test localhost
+app.UseCors(options =>
+{
+    options.SetIsOriginAllowed(x => _ = true).AllowAnyMethod().AllowAnyHeader().AllowCredentials();
+});
 
-//app.UseCors(options =>
-//{
-//    options.SetIsOriginAllowed(x => _ = true).AllowAnyMethod().AllowAnyHeader().AllowCredentials();
-//});
-
-app.UseCors();
+//app.UseCors();
 
 app.Run();

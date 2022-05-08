@@ -4,6 +4,7 @@ using GlobCartOrderService.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GlobCartOrderService.Infra.Data.Migrations
 {
     [DbContext(typeof(GlobCartOrderServiceContext))]
-    partial class GlobCartOrderServiceContextModelSnapshot : ModelSnapshot
+    [Migration("20220508061633_UpdateUnitPriceType")]
+    partial class UpdateUnitPriceType
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -64,10 +66,6 @@ namespace GlobCartOrderService.Infra.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("varchar(20)");
-
-                    b.Property<int>("Role")
-                        .HasColumnType("int")
-                        .HasColumnName("Role");
 
                     b.HasKey("Id");
 
