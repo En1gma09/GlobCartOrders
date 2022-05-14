@@ -13,6 +13,7 @@ namespace GlobCartOrderService.Infra.Data.Context
     {
         public DbSet<User> Users { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<Order> Orders { get; set; }
 
         public GlobCartOrderServiceContext(DbContextOptions<GlobCartOrderServiceContext> dbContextOptions)
             : base(dbContextOptions)
@@ -25,6 +26,9 @@ namespace GlobCartOrderService.Infra.Data.Context
             modelBuilder.ApplyConfiguration(new UserRegisterMap());
 
             modelBuilder.ApplyConfiguration(new ProductMap());
+
+            modelBuilder.ApplyConfiguration(new OrderMap());
+            modelBuilder.ApplyConfiguration(new OrderProductMap());
 
             base.OnModelCreating(modelBuilder);
         }

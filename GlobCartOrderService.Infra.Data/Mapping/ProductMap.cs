@@ -13,11 +13,11 @@ namespace GlobCartOrderService.Infra.Data.Mapping
     {
         public void Configure(EntityTypeBuilder<Product> builder)
         {
-            builder.Property(prop => prop.productId)
+            builder.Property(prop => prop.ProductId)
                 .HasColumnType("varchar(40)")
                 .HasMaxLength(40);
 
-            builder.Property(prop => prop.productName)
+            builder.Property(prop => prop.ProductName)
                 .HasColumnType("varchar(150)")
                 .HasMaxLength(150)
                 .IsRequired();

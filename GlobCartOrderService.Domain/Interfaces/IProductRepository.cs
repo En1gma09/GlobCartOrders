@@ -11,6 +11,8 @@ namespace GlobCartOrderService.Domain.Interfaces
     {
         ICollection<Product> GetProducts();
 
+        Product GetProductById(string productId);
+
         Product GetProductByName(string productName);
 
         ValidationResult<Product> CreateProduct(Product product);

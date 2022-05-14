@@ -23,16 +23,21 @@ namespace GlobCartOrderService.Infra.Data.Repository
             return _globCartOrderServiceContext.Products.ToList();
         }
 
+        public Product GetProductById(string productId)
+        {
+            return _globCartOrderServiceContext.Products.FirstOrDefault(product => product.ProductId == productId);
+        }
+
         public Product GetProductByName(string productName)
         {
-            return _globCartOrderServiceContext.Products.FirstOrDefault(product => product.productName == productName);
+            return _globCartOrderServiceContext.Products.FirstOrDefault(product => product.ProductName == productName);
         }
 
         public ValidationResult<Product> CreateProduct(Product product)
         {
             var result = new ValidationResult<Product>(product);
 
-            product.productId = Guid.NewGuid().ToString();
+            product.ProductId = Guid.NewGuid().ToString();
 
             if (result.IsValid)
             {

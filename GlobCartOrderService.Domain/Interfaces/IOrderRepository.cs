@@ -7,13 +7,15 @@ using System.Threading.Tasks;
 
 namespace GlobCartOrderService.Domain.Interfaces
 {
-    public interface IUserRepository
+    public interface IOrderRepository
     {
-        ICollection<User> GetAll();
+        Order GetByCode(string code);
 
-        User GetByEmail(string email, string password);
+        void Create(Order order);
 
-        ValidationResult<User> Create(User user);
+        void Update(Order order);
+
+        void Delete(Order order);
 
         void Commit();
     }

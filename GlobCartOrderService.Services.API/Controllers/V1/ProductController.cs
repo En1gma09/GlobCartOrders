@@ -64,7 +64,7 @@ namespace GlobCartOrderService.Services.API.Controllers.V1
             if (ModelState.IsValid)
             {
                 var productResult = _productRepository.CreateProduct(_mapper.Map<Product>(product));
-                return Created($"api/products/{productResult.Model.productId}", _mapper.Map<CreateProductViewModel>(productResult.Model));
+                return Created($"api/products/{productResult.Model.ProductId}", _mapper.Map<CreateProductViewModel>(productResult.Model));
             }
 
             return BadRequest(ModelState);
@@ -107,7 +107,7 @@ namespace GlobCartOrderService.Services.API.Controllers.V1
 
             var productDeleted = _productRepository.DeleteProduct(id, _mapper.Map<Product>(product));
 
-            return Ok("Product " + productDeleted.productId + " successfully deleted!");
+            return Ok("Product " + productDeleted.ProductId + " successfully deleted!");
         }
     }
 }

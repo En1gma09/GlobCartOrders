@@ -8,9 +8,9 @@ namespace GlobCartOrderService.Domain.Models
 {
     public class Product
     {
-        public string? productId { get; set; }
+        public string? ProductId { get; set; }
 
-        public string productName { get; set; }
+        public string ProductName { get; set; }
 
         public decimal UnitPrice { get; set; }
 

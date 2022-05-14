@@ -20,15 +20,15 @@ namespace GlobCartOrderService.Services.API.Services
 
         public Product GetProductByName(string productName)
         {
-            return globCartOrderServiceContext.Products.FirstOrDefault(p => p.productName.Equals(productName));
+            return globCartOrderServiceContext.Products.FirstOrDefault(p => p.ProductName.Equals(productName));
         }
 
         public ValidationResult<Product> CreateProduct(Product product)
         {
             var result = new ValidationResult<Product>(product);
 
-            product.productId = Guid.NewGuid().ToString();
-            product.productName = product.productName;
+            product.ProductId = Guid.NewGuid().ToString();
+            product.ProductName = product.ProductName;
             product.UnitPrice = product.UnitPrice;
             product.ProductCreated = DateTime.Now;
 
