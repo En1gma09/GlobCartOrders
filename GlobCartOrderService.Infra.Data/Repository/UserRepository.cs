@@ -32,16 +32,6 @@ namespace GlobCartOrderService.Infra.Data.Repository
                     .FirstOrDefault(user => user.Email.Equals(email) && user.Password.Equals(password));
         }
 
-        //public void Create(User user)
-        //{
-        //    globCartOrderServiceContext.Users.Add(user);
-        //}
-
-        public void Commit()
-        {
-            globCartOrderServiceContext.SaveChanges();
-        }
-
         ValidationResult<User> IUserRepository.Create(User user)
         {
             var result = new ValidationResult<User>(user);
@@ -55,6 +45,11 @@ namespace GlobCartOrderService.Infra.Data.Repository
             }
 
             return result;
+        }
+
+        public void Commit()
+        {
+            globCartOrderServiceContext.SaveChanges();
         }
     }
 }
