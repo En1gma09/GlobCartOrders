@@ -10,9 +10,9 @@ namespace GlobCartOrderService.Domain.Models
     {
         public Guid Id { get; set; }
 
-        public string CustomerId { get; set; }
+        public string CustomerId { get; set; } = string.Empty;
 
-        public string Code { get; set; }
+        public string Code { get; set; } = string.Empty;
 
         public DateTime CreatedDate { get; set; }
 
@@ -22,7 +22,7 @@ namespace GlobCartOrderService.Domain.Models
 
         public OrderStatus Status { get; set; }
 
-        public List<OrderProduct> Products { get; set; }
+        public List<OrderProduct> Products { get; set; } = new List<OrderProduct>();
 
         public decimal Total { get; set; }
     }
